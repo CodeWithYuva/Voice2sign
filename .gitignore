@@ -4,3 +4,4 @@ env/
 processed_dataset/
 processed_dataset.zip
 dataset/
+__pycache__/
