@@ -37,7 +37,7 @@ with mode[0]:
 # ISL to Text
 # =============== ISL to Text Mode =============== #
 with mode[1]:
-    st.subheader("🖐️ ISL to Text (Live Prediction)")
+    st.subheader(" ISL to Text (Live Prediction)")
 
     st.write("This mode will open a separate OpenCV window for live ISL sign recognition.")
     st.write("Press **q** in that window to stop prediction.")
