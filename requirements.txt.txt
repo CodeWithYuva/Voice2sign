@@ -1,0 +1,25 @@
+# === Core AI / Deep Learning ===
+tensorflow==2.16.1
+mediapipe==0.10.20
+protobuf==4.25.3
+numpy==1.26.4
+
+# === Computer Vision ===
+opencv-python==4.10.0.84
+opencv-contrib-python==4.10.0.84
+Pillow==10.4.0
+
+# === Data Handling / Preprocessing ===
+matplotlib==3.10.0
+scikit-learn==1.5.2
+
+# === Web App (UI) ===
+streamlit==1.39.0
+
+# === Optional Utilities ===
+jax==0.7.1
+jaxlib==0.7.1
+absl-py==2.1.0
+
+# === For Training / Augmentation ===
+tensorflow-intel==2.16.1 ; platform_system == "Windows"
