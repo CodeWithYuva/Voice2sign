@@ -1,0 +1,22 @@
+# === Core Stability ===
+
+#Use python 3.12.3 version 
+
+# TensorFlow 2.15 is the last stable release that comfortably uses Protobuf 4
+tensorflow==2.16.1
+# Mediapipe 0.10.13 works best with Protobuf 4.25.x
+mediapipe==0.10.13
+# The bridge that connects them (CRITICAL)
+protobuf==4.25.3
+# TF 2.15 breaks with Numpy 2.0+, so we must pin below it
+numpy<2.0.0
+
+# === Computer Vision ===
+opencv-contrib-python
+Pillow
+
+# === UI & Data ===
+streamlit
+# User preference respected: 3.9 is more stable for Streamlit currently
+matplotlib==3.9.0
+scikit-learn

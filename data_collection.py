@@ -61,7 +61,7 @@ class HandTrackingDynamic:
         return bboxes
 
 
-def collect_gesture_data(label, save_dir="dataset", num_samples=250):
+def collect_gesture_data(label, save_dir="dataset", num_samples=100):
     """Collect dataset of hand gesture using both hands."""
     cap = cv2.VideoCapture(0)
     hist = load_hist()

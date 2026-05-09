@@ -1,7 +1,11 @@
+import os
+os.environ["KERAS_BACKEND"] = "tensorflow"
+
+
 import cv2
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 import mediapipe as mp
 import pickle
 import math

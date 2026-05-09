@@ -24,7 +24,7 @@ with mode[0]:
     input_text = st.text_input("Enter text (A-Z only):").upper()
     if st.button("Convert to ISL") and input_text:
         for char in input_text:
-            if char.isalpha():
+            if len(char)>=1:
                 img_path = f"C:/Users/HP/Desktop/ISL prototype/lil/signs/signs/{char}.jpg"
                 if os.path.exists(img_path):
                     img = Image.open(img_path)
