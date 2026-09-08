@@ -87,9 +87,11 @@ Copy code
 python live_prediction.py
 ```
 
-📂 Project Structure
+## 📂 Project Structure
 
+```
 Voice2sign/
+│
 ├── app.py                     # Streamlit UI
 ├── live_prediction.py         # Real-time ISL → Text prediction
 ├── data_collection.py         # Collect custom gesture dataset
@@ -102,6 +104,9 @@ Voice2sign/
 ├── processed_dataset/         # Preprocessed .npy images
 ├── requirements.txt           # Dependencies
 └── README.md                  # Documentation
+```
+
+
 💡 Future Improvements
 🔁 Add real-time voice ↔ sign translation
 
