@@ -86,9 +86,9 @@ Run live prediction (works standalone):
 Copy code
 python live_prediction.py
 ```
+
 📂 Project Structure
-graphql
-Copy code
+
 Voice2sign/
 ├── app.py                     # Streamlit UI
 ├── live_prediction.py         # Real-time ISL → Text prediction
