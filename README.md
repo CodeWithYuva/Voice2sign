@@ -44,40 +44,48 @@ The goal is to make real-time communication easier for individuals using Indian 
 ```bash
 git clone https://github.com/CodeWithYuva/Voice2sign.git
 cd Voice2sign
+```
 🧰 Step 2 — Create Virtual Environment
-bash
+```bash
 Copy code
 python -m venv env
 env\Scripts\activate
+```
 🧩 Step 3 — Install Dependencies
-bash
+```bash
 Copy code
 pip install -r requirements.txt
+```
 🎯 Step 4 — Run the App
-bash
+```bash
 Copy code
 streamlit run app.py
+```
 🧠 Training Your Own Model
 Collect gestures using:
 
-bash
+```bash
 Copy code
 python data_collection.py
+```
 Preprocess and augment images:
 
-bash
+```bash
 Copy code
 python preprocessing.py
+```
 Train the CNN:
 
-bash
+```bash
 Copy code
 python train_model.py
+```
 Run live prediction (works standalone):
 
-bash
+```bash
 Copy code
 python live_prediction.py
+```
 📂 Project Structure
 graphql
 Copy code
@@ -101,12 +109,9 @@ Voice2sign/
 
 🧍 Add gesture-to-speech output using text-to-speech
 
-🌐 Host as a web application for accessibility
 
 👨‍💻 Author
 Yuvaraj
-🎓 Developer passionate about accessibility, AI, and assistive communication systems.
-📧 [Add your email or LinkedIn here]
+📧 jjacky635@gmail.com
 
-🪪 License
-This project is licensed under the MIT License — see the LICENSE file for details.
+
