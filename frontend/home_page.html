@@ -1,0 +1,285 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="web_standard" name="shell-type">
+<title>Voice2Sign — Real-Time Indian Sign Language AI</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: "#0a0a23",
+              dark: "#070235",
+              slate: "#1e1b4b",
+              teal: "#0d9488",
+              amber: "#d97706",
+              surface: "#fafbff",
+              muted: "#64748b"
+            }
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-teal-500/20 selection:text-teal-900">
+<!-- NAVBAR -->
+<header class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 transition-all">
+<div class="max-w-7xl mx-auto h-20 px-6 sm:px-8 flex items-center justify-between">
+<!-- Logo -->
+
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 hover:text-slate-950 transition-colors" href="#product">Product</a>
+<a class="text-sm font-medium text-slate-600 hover:text-slate-950 transition-colors" href="#features">Features</a>
+<a class="text-sm font-medium text-slate-600 hover:text-slate-950 transition-colors" href="#community">Community</a>
+</nav>
+<!-- Action CTAs -->
+<div class="flex items-center gap-5">
+<a class="text-sm font-medium text-slate-700 hover:text-slate-950 transition-colors hidden sm:block" href="/signin">Sign in</a>
+<a class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white text-sm font-semibold shadow-sm hover:shadow transition-all duration-150" href="/register">
+          Get Started Free
+        </a>
+</div>
+</div>
+</header>
+<main class="pt-20 overflow-hidden">
+<!-- HERO SECTION -->
+<section class="relative pt-24 pb-20 sm:pt-32 sm:pb-28 lg:pb-32 bg-gradient-to-b from-slate-50/50 via-white to-white" id="product">
+<div class="max-w-7xl mx-auto px-6 sm:px-8 text-center">
+<!-- Crisp Launch Badge -->
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100/90 border border-slate-200/80 text-xs font-semibold text-slate-800 mb-8 backdrop-blur-sm">
+<span class="text-teal-600">✦</span>
+<span class="">Introducing Real-Time ISL Translation</span>
+<span class="text-slate-300">|</span>
+<span class="text-slate-500 font-normal">ISLRTC Aligned</span>
+</div>
+<!-- Headline -->
+<h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-950 tracking-tight leading-[1.12] max-w-4xl mx-auto">
+          The intelligent bridge between voice and Indian Sign Language.
+        </h1>
+<!-- Subtitle -->
+<p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
+          Voice2Sign empowers seamless two-way translation with millisecond latency, expressive 3D synthesis, and community-guided learning for millions across India.
+        </p>
+<!-- CTA Buttons -->
+<div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-full bg-slate-950 hover:bg-slate-800 text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all" href="/register">
+            Start for free
+          </a>
+<button onclick="window.location.href='/dashboard'" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-800 text-sm font-medium border border-slate-200 shadow-sm hover:border-slate-300 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px] text-teal-600" style="font-variation-settings: &quot;FILL&quot; 1;">play_circle</span>
+<span class="">Launch Dashboard</span>
+</button>
+</div>
+<!-- Product Hero Mockup Display -->
+<div class="mt-16 sm:mt-20 relative max-w-5xl mx-auto">
+<!-- Subtle Glow Backdrop -->
+<div class="absolute -inset-4 bg-gradient-to-r from-teal-500/10 via-indigo-500/10 to-amber-500/10 rounded-3xl blur-2xl -z-10 opacity-70"></div>
+<!-- Device Container -->
+<div class="relative rounded-2xl p-2 sm:p-3 bg-slate-950/5 border border-slate-200/80 shadow-2xl backdrop-blur-xl">
+<div class="relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800/60 aspect-[16/10] sm:aspect-[16/9] max-h-[580px] w-full">
+<img alt="Voice2Sign Live Hand Recognition &amp; Translation Interface" class="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida/AEtjO1XvjwXiArdvorBz49mAbTcoBbrA0xKPkFCOEfuuttVLAHyjQK_9heUOwcY6ITVm5rmgc4INxRxUyByLqEIA83L5w7AwH28B71NT0DZ4Ne0K-pv_MhZpbc89jPNQL_T3pWlKNBUWC341rJVXsK1ifRfeL-y3fTMIK63FiIWEfDM5P55OdIULv8ZEHjvGH0gcoTZxI6Sa3uXu2NgvITaKZK7SHAuUBRcv83aWw-p1dB_fs_nO8abKgaeWvAs">
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none"></div>
+<!-- Floating Metric Pill Left -->
+<div class="absolute top-5 left-5 hidden sm:flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/60 shadow-lg text-left">
+<div class="w-2.5 h-2.5 rounded-full bg-teal-500 animate-pulse"></div>
+<div>
+<div class="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">Inference Latency</div>
+<div class="text-sm font-bold text-slate-900">&lt; 92ms real-time</div>
+</div>
+</div>
+<!-- Floating Metric Pill Right -->
+<div class="absolute bottom-5 right-5 flex items-center gap-3 bg-slate-950/80 backdrop-blur-md px-4 py-2.5 rounded-xl border border-slate-700/60 shadow-lg text-left text-white">
+<span class="material-symbols-outlined text-teal-400 text-[20px]">verified</span>
+<div>
+<div class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Sign Accuracy</div>
+<div class="text-sm font-bold text-white">99.4% Recognition</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TRUST STRIP -->
+<section class="py-14 border-y border-slate-100 bg-white">
+<div class="max-w-7xl mx-auto px-6 sm:px-8 text-center">
+<p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-8">
+          Trusted by pioneering accessibility teams, educators, and organizations across India
+        </p>
+<div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 opacity-60 grayscale hover:grayscale-0 transition-all">
+<span class="font-display font-bold text-slate-700 text-lg tracking-tight">ISLRTC Partner</span>
+<span class="font-display font-bold text-slate-700 text-lg tracking-tight">AICTE Incubated</span>
+<span class="font-display font-bold text-slate-700 text-lg tracking-tight">InclusiveEd India</span>
+<span class="font-display font-bold text-slate-700 text-lg tracking-tight">Deaf Enabled Fdn</span>
+<span class="font-display font-bold text-slate-700 text-lg tracking-tight">Univ. of Delhi Hub</span>
+</div>
+</div>
+</section>
+<!-- CORE FEATURES (3 ESSENTIALS) -->
+<section class="py-28 lg:py-36 bg-slate-50/50" id="features">
+<div class="max-w-7xl mx-auto px-6 sm:px-8">
+<div class="max-w-2xl mb-16 sm:mb-20">
+<span class="text-xs font-bold uppercase tracking-wider text-teal-700">The Core Engine</span>
+<h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight mt-3">
+            Engineered for nuance. Built for genuine inclusion.
+          </h2>
+<p class="mt-4 text-slate-600 text-base sm:text-lg">
+            Every layer of Voice2Sign is tuned to capture facial grammar, spatial syntax, and pan-Indian sign dialects with utmost accuracy.
+          </p>
+</div>
+<!-- 3-Column Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Pillar 1 -->
+<div class="p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 mb-6">
+<span class="material-symbols-outlined text-[24px]">sync_alt</span>
+</div>
+<h3 class="font-display text-xl font-bold text-slate-950 tracking-tight">Two-Way Voice &amp; Sign</h3>
+<p class="mt-3 text-sm text-slate-600 leading-relaxed">
+              Instant bidirectional AI translation. Speak in major Indian languages and watch seamless, anatomically accurate ISL avatars respond live.
+            </p>
+</div>
+<!-- Pillar 2 -->
+<div class="p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600 mb-6">
+<span class="material-symbols-outlined text-[24px]">front_hand</span>
+</div>
+<h3 class="font-display text-xl font-bold text-slate-950 tracking-tight">Landmark Camera Vision</h3>
+<p class="mt-3 text-sm text-slate-600 leading-relaxed">
+              Real-time millimetric tracking of 21 hand landmarks, finger trajectories, and facial markers with instantaneous corrective feedback.
+            </p>
+</div>
+<!-- Pillar 3 -->
+<div class="p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 mb-6">
+<span class="material-symbols-outlined text-[24px]">school</span>
+</div>
+<h3 class="font-display text-xl font-bold text-slate-950 tracking-tight">ISLRTC-Aligned Tracks</h3>
+<p class="mt-3 text-sm text-slate-600 leading-relaxed">
+              Progress through bite-sized, gamified lessons mapped directly to national standards, verified by Deaf educators and linguists.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- INTERACTIVE / VISUAL PRODUCT WALKTHROUGH -->
+<section class="py-28 lg:py-36 bg-white border-t border-slate-100" id="community">
+<div class="max-w-7xl mx-auto px-6 sm:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- Text Info -->
+<div class="lg:col-span-5 space-y-6">
+<span class="text-xs font-bold uppercase tracking-wider text-teal-700">Deaf-Led Pedagogy</span>
+<h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
+              Built hand-in-hand with India's Deaf community.
+            </h2>
+<p class="text-slate-600 text-base leading-relaxed">
+              We reject sterile transliteration. Indian Sign Language is an autonomous, expressive visual language with unique spatial grammar. 100% of our curriculum and datasets are curated, verified, and co-created by native Deaf educators.
+            </p>
+<ul class="space-y-3 pt-2 text-sm text-slate-700 font-medium">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-teal-600 text-[20px]">check_circle</span>
+<span class="">Cultural lexicons for festivals, food, and family</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-teal-600 text-[20px]">check_circle</span>
+<span class="">Non-Manual Marker (NMM) facial expression detection</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-teal-600 text-[20px]">check_circle</span>
+<span class="">Certified tracks for higher education &amp; workplaces</span>
+</li>
+</ul>
+</div>
+<!-- Image Showcase -->
+<div class="lg:col-span-7">
+<div class="relative rounded-2xl overflow-hidden border border-slate-200/80 shadow-xl bg-slate-50">
+<img alt="Students learning Indian Sign Language together in classroom" class="w-full h-auto object-cover max-h-[480px]" src="https://lh3.googleusercontent.com/aida/AEtjO1XwbKiCIJQhMdJns2YqqK1pCmDXgDSHJ-gZNETCLuik445d718XOR6wksINSK-9qG1AOR0BH288zn0NSB2HaEVz5s3V2ea5-m2YJgECAw_1BCigwBVx3GinT29zkqFSaSytxNc8yd6Hk2RV2g3Ssx8LGrt6LuzM9S4AE3NWulG-xQSPZGsr_42BVZr0cat4C5sFK_Uc0TFSpcrl6qxv5NIfBmyyNnYKU8ptFASr5xL8rG3nF1tmphLlRiNE">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- STATS & TESTIMONIALS -->
+<section class="py-28 lg:py-36 bg-slate-50/50 border-t border-slate-100" id="utility"><div class="max-w-7xl mx-auto px-6 sm:px-8"><div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20"><span class="text-xs font-bold uppercase tracking-wider text-teal-700">Everyday Impact</span><h2 class="font-display text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight mt-3">Empowering communication across every sphere of life.</h2><p class="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">From daily enterprise meetings to classrooms and emergency care, discover how Voice2Sign transforms accessibility into second nature.</p></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><div class="p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"><div class="space-y-4"><div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600"><span class="material-symbols-outlined text-[24px]">work</span></div><h3 class="font-display text-xl font-bold text-slate-950 tracking-tight">Workplace &amp; Standups</h3><p class="text-sm text-slate-600 leading-relaxed">Live meeting captioning to ISL avatars. Deaf professionals participate seamlessly in agile standups and video calls without interpreter delays.</p></div><div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs"><span class="font-semibold text-slate-900">&lt; 92ms Latency</span><span class="text-teal-600 font-medium">Real-Time</span></div></div><div class="p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"><div class="space-y-4"><div class="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600"><span class="material-symbols-outlined text-[24px]">school</span></div><h3 class="font-display text-xl font-bold text-slate-950 tracking-tight">Inclusive Classrooms</h3><p class="text-sm text-slate-600 leading-relaxed">Live lecture transcription into standardized ISLRTC signs, empowering Deaf students to engage actively in STEM and higher education.</p></div><div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs"><span class="font-semibold text-slate-900">ISLRTC Standard</span><span class="text-indigo-600 font-medium">Verified</span></div></div><div class="p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"><div class="space-y-4"><div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-600"><span class="material-symbols-outlined text-[24px]">medical_services</span></div><h3 class="font-display text-xl font-bold text-slate-950 tracking-tight">Healthcare &amp; ER</h3><p class="text-sm text-slate-600 leading-relaxed">Instant two-way translation enabling doctors and emergency responders to communicate vital medical directions accurately with Deaf patients.</p></div><div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs"><span class="font-semibold text-slate-900">99.4% Accuracy</span><span class="text-amber-600 font-medium">Critical Care</span></div></div><div class="p-8 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between"><div class="space-y-4"><div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600"><span class="material-symbols-outlined text-[24px]">diversity_1</span></div><h3 class="font-display text-xl font-bold text-slate-950 tracking-tight">Family &amp; Social</h3><p class="text-sm text-slate-600 leading-relaxed">Bridges everyday communication between hearing parents and Deaf children through expressive, natural conversational feedback.</p></div><div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs"><span class="font-semibold text-slate-900">100% On-Device</span><span class="text-teal-600 font-medium">Private</span></div></div></div></div></section>
+<!-- MINIMALIST PRICING / TIER PREVIEW -->
+<section class="py-28 lg:py-36 bg-white border-t border-slate-100" id="pricing">
+<div class="max-w-7xl mx-auto px-6 sm:px-8">
+<div class="text-center max-w-xl mx-auto mb-16">
+<span class="text-xs font-bold uppercase tracking-wider text-teal-700">Access For Everyone</span>
+<h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight mt-3">
+            Simple, honest accessibility.
+          </h2>
+<p class="mt-3 text-slate-600 text-sm sm:text-base">
+            Free forever for individuals and the Deaf community. Enterprise tools for institutions.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+<!-- Community Tier -->
+
+<!-- Enterprise Tier -->
+
+</div>
+</div>
+</section>
+<!-- PREMIUM HIGH-IMPACT DARK CTA BANNER -->
+<section class="py-24 sm:py-32 bg-slate-950 relative overflow-hidden" id="cta">
+<!-- Radial Ambient Gradient -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(13,148,136,0.18)_0%,_transparent_65%)] pointer-events-none"></div>
+<div class="relative max-w-4xl mx-auto px-6 sm:px-8 text-center">
+<h2 class="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          Start speaking sign today.
+        </h2>
+<p class="mt-4 text-base sm:text-lg text-slate-400 max-w-xl mx-auto">
+          Join over 120,000 learners bridging silent barriers across India. Get started in less than 60 seconds.
+        </p>
+<!-- Simple Clean Email Bar -->
+<form class="mt-10 max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+<input class="flex-1 px-5 py-3.5 rounded-full bg-slate-900 border border-slate-800 text-white placeholder:text-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" placeholder="Enter your email" required="" type="email">
+<button class="px-6 py-3.5 rounded-full bg-white hover:bg-slate-100 text-slate-950 text-sm font-semibold shrink-0 transition-all" type="submit">
+            Join Voice2Sign
+          </button>
+</form>
+<div class="mt-6 flex items-center justify-center gap-6 text-xs text-slate-500 font-medium">
+<span class="">✓ Free forever for individuals</span>
+<span class="">✓ No credit card required</span>
+<span class="">✓ WCAG 2.2 AAA</span>
+</div>
+</div>
+</section>
+</main>
+<!-- CLEAN UNCLUTTERED FOOTER -->
+<footer class="bg-white border-t border-slate-100 py-16">
+<div class="max-w-7xl mx-auto px-6 sm:px-8">
+
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+<p class="">© 2025 Voice2Sign Foundation. Aligned with ISLRTC guidelines.</p>
+<div class="flex gap-6">
+<a class="hover:text-slate-600 transition-colors" href="#">Privacy</a>
+<a class="hover:text-slate-600 transition-colors" href="#">Terms</a>
+<a class="hover:text-slate-600 transition-colors" href="#">Security</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+</body></html>

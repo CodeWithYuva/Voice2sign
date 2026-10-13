@@ -1,15 +1,8 @@
 import cv2
 import numpy as np
-import os
-import pickle
-import mediapipe as mp
 import math
-
-
-def load_hist():
-    """Load previously saved skin histogram."""
-    with open("hist", "rb") as f:
-        return pickle.load(f)
+import os
+import mediapipe as mp
 
 
 class HandTrackingDynamic:
@@ -41,6 +34,8 @@ class HandTrackingDynamic:
             for myHand in self.results.multi_hand_landmarks:
                 xList, yList = [], []
                 h, w, _ = frame.shape
+
+                
                 for lm in myHand.landmark:
                     xList.append(int(lm.x * w))
                     yList.append(int(lm.y * h))
@@ -64,7 +59,6 @@ class HandTrackingDynamic:
 def collect_gesture_data(label, save_dir="dataset", num_samples=100):
     """Collect dataset of hand gesture using both hands."""
     cap = cv2.VideoCapture(0)
-    hist = load_hist()
     detector = HandTrackingDynamic()
     count = 0
 
@@ -73,6 +67,13 @@ def collect_gesture_data(label, save_dir="dataset", num_samples=100):
     print(f"\n📸 Collecting samples for: {label} (Two-handed support ON)")
     while count < num_samples:
         ret, frame = cap.read()
+        if not ret:
+            print("Failed to grab frame")
+            break
+
+        # Mirror the frame so collected samples match the mirrored live-preview /
+        # live-inference view in the browser. Keeps training data perspective
+        # consistent with inference (selfie / mirror view).
         frame = cv2.flip(frame, 1)
 
         # Detect hands
