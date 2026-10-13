@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice2Sign Platform — Real-Time Indian Sign Language AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f8f9ff",
+            "outline": "#787680",
+            "primary": "#070235",
+            "primary-container": "#1e1b4b",
+            "on-primary": "#ffffff",
+            "secondary": "#904d00",
+            "secondary-container": "#fe932c",
+            "tertiary": "#000e0c",
+            "tertiary-container": "#002723",
+            "on-tertiary-container": "#1a998d",
+            "tertiary-fixed": "#89f5e7",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "background": "#f8f9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#47464f"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-sans text-on-surface antialiased min-h-screen">
+
+  <!-- HEADER / NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-surface-container">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-8">
+        <!-- Logo -->
+        <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='/'">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-sm">
+            <span class="material-symbols-outlined text-[24px]">sign_language</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-display font-extrabold text-xl text-primary tracking-tight">Voice2Sign</span>
+            <span class="text-xs font-semibold text-on-tertiary-container">Indian Sign Language AI</span>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="hidden lg:flex items-center gap-1 p-1 rounded-xl bg-surface-container-low" id="mainNav">
+          <button class="nav-tab-btn px-4 py-2 text-sm font-semibold bg-primary-container text-white rounded-lg shadow-xs" onclick="switchView('dashboard', this)">Dashboard</button>
+          <button class="nav-tab-btn px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors rounded-lg" onclick="switchView('text-to-isl', this)">Text to ISL</button>
+          <button class="nav-tab-btn px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors rounded-lg" onclick="switchView('practice-camera', this)">Practice & AI Camera</button>
+          <button class="nav-tab-btn px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors rounded-lg" onclick="switchView('dictionary', this)">ISL Dictionary</button>
+          <button class="nav-tab-btn px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors rounded-lg" onclick="switchView('daily-quiz', this)">Daily Quiz</button>
+        </nav>
+      </div>
+
+      <!-- User Profile & Sign Out -->
+      <div class="flex items-center gap-4">
+        <div class="text-right hidden sm:block">
+          <div class="font-display font-bold text-sm text-primary" id="userNameDisplay">Aarav Sharma</div>
+          <div class="text-xs text-on-surface-variant" id="userRoleDisplay">Learner / Ally</div>
+        </div>
+        <button onclick="handleSignOut()" class="px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-primary font-semibold text-xs transition-colors border border-surface-container">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-6 pt-28 pb-16">
+
+    <!-- Top Greeting Banner -->
+    <section class="mb-8">
+      <div class="rounded-2xl bg-gradient-to-r from-primary to-primary-container p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-bold text-tertiary-fixed uppercase tracking-wider">Voice2Sign Platform</span>
+          <h1 class="font-display font-extrabold text-2xl sm:text-3xl mt-1" id="greetingHeader">Welcome back, Aarav Sharma! 👋</h1>
+          <p class="text-sm text-surface-container-high mt-1">Continue mastering Indian Sign Language with real-time AI neural feedback.</p>
+        </div>
+       
+      </div>
+    </section>
+
+    <!-- VIEW 1: DASHBOARD OVERVIEW -->
+    <section class="view-section" id="view-dashboard">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-2">
+        <div>
+          <span class="text-xs font-bold text-on-tertiary-container uppercase tracking-wider">Comprehensive Ecosystem</span>
+          <h2 class="font-display font-extrabold text-2xl text-primary mt-1">Your Core Learning Pillars</h2>
+        </div>
+        <p class="text-sm text-on-surface-variant max-w-md">Certified Indian Sign Language (ISL) curriculum powered by spatial neural feedback and native Deaf instruction.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <!-- Card 1: Learn -->
+        <div class="group relative rounded-2xl bg-white p-6 shadow-sm border border-surface-container hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-surface-container-low text-primary text-xs font-bold">ISLRTC Standard </span>
+              <span class="material-symbols-outlined text-primary text-[24px]">menu_book</span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-primary">1. Learn (Curriculum)</h3>
+            <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">Step-by-step video courses designed by native Deaf educators, from fingerspelling to conversational everyday fluency.</p>
+            <div class="mt-6 p-3 rounded-xl bg-surface-container-low">
+              
+              <div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+                <div class="h-full bg-on-tertiary-container rounded-full" style="width: 68%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Practice & AI Camera -->
+        <div class="group relative rounded-2xl bg-white p-6 shadow-sm border border-surface-container hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="switchView('practice-camera')">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-teal-50 text-teal-700 text-xs font-bold flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-teal-500 animate-ping"></span> Real-Time Vision
+              </span>
+              <span class="material-symbols-outlined text-teal-600 text-[24px]">center_focus_strong</span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-primary">2. Practice & AI Camera</h3>
+            <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">Turn on your webcam for instant feedback on finger flexion, hand orientation, and facial markers with 21-point tracking.</p>
+          </div>
+          <div class="mt-6 pt-2">
+            <button class="w-full py-2.5 px-4 bg-on-tertiary-container hover:bg-tertiary-container text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-colors shadow-sm">
+              <span>Launch AI Studio</span>
+              <span class="material-symbols-outlined text-[18px]">videocam</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 3: ISL Dictionary -->
+        <div class="group relative rounded-2xl bg-white p-6 shadow-sm border border-surface-container hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="switchView('dictionary')">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="material-symbols-outlined text-indigo-600 text-[24px]">find_in_page</span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-primary">3. ISL Dictionary</h3>
+            <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">Pan-Indian sign dictionary with multi-angle slow-motion clips, regional variations, and bidirectional translation.</p>
+          </div>
+          <div class="mt-6 pt-2">
+            <button class="w-full py-2.5 px-4 bg-surface-container text-primary hover:bg-surface-container-high text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-colors">
+              <span>Browse Dictionary</span>
+              <span class="material-symbols-outlined text-[18px]">auto_stories</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 4: Daily Quiz -->
+        <div class="group relative rounded-2xl bg-white p-6 shadow-sm border border-surface-container hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="switchView('daily-quiz')">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              
+              <span class="material-symbols-outlined text-amber-600 text-[24px]">quiz</span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-primary">4. Daily Quiz & Challenge</h3>
+            <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">Gamified bite-sized challenges to cement recall, earn badges, and compete on the Pan-Indian leaderboard.</p>
+          </div>
+          <div class="mt-6 pt-2">
+            <button class="w-full py-2.5 px-4 bg-secondary-container hover:bg-secondary text-primary text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-colors shadow-sm">
+              <span>Start Daily Quiz</span>
+              <span class="material-symbols-outlined text-[18px]">play_arrow</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: TEXT TO ISL CONVERTER -->
+    <section class="view-section hidden" id="view-text-to-isl">
+      <div class="rounded-2xl bg-white p-8 shadow-sm border border-surface-container space-y-6">
+        <div>
+          <span class="text-xs font-bold text-on-tertiary-container uppercase tracking-wider">Translation Studio</span>
+          <h2 class="font-display font-extrabold text-2xl text-primary mt-1">Text to ISL Sign Converter</h2>
+          <p class="text-sm text-on-surface-variant mt-1">Convert text or character sequences into corresponding Indian Sign Language gesture cards.</p>
+        </div>
+
+        <div class="flex gap-4 flex-col sm:flex-row">
+          <input id="textInput" type="text" value="HELLO" placeholder="Enter text (e.g. HELLO, 123)" class="flex-1 h-12 px-4 bg-surface-container-low text-primary font-medium text-sm rounded-xl outline-none focus:ring-2 focus:ring-primary border border-surface-container"/>
+          <button onclick="convertTextToISL()" class="h-12 px-6 bg-primary hover:bg-primary-container text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+            <span>Convert to ISL</span>
+            <span class="material-symbols-outlined text-[20px]">translate</span>
+          </button>
+        </div>
+
+        <div class="pt-4" id="signCardsContainer">
+          <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4" id="signCardsGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: PRACTICE & AI CAMERA STUDIO -->
+    <section class="view-section hidden" id="view-practice-camera">
+      <div class="max-w-5xl mx-auto space-y-6">
+        
+        <!-- Header & Controls Card -->
+        <div class="rounded-2xl bg-white p-6 sm:p-8 shadow-sm border border-surface-container">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-on-tertiary-container uppercase tracking-wider">Live Neural Studio</span>
+                <span id="cameraStatusPill" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-600 flex items-center gap-1.5 border border-slate-200">
+                  <span class="w-2 h-2 rounded-full bg-slate-400"></span> Camera Offline
+                </span>
+              </div>
+              <h2 class="font-display font-extrabold text-2xl text-primary mt-1">Live ISL Recognition Camera</h2>
+              <p class="text-xs text-on-surface-variant mt-1">Continuous real-time Indian Sign Language detection powered by MediaPipe and CNN inference.</p>
+            </div>
+
+            <!-- Start / Stop Button -->
+            <div class="flex items-center gap-3">
+              <button id="toggleLiveCamBtn" onclick="toggleLiveCamera()" class="h-12 px-6 bg-primary hover:bg-primary-container text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[20px]" id="toggleCamIcon">videocam</span>
+                <span id="toggleCamText">Start Live Prediction</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Modern Radio Controls: Letters/Words & Skeleton Diagram -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-surface-container">
+            
+            <!-- Group 1: Letters or Words Modern Radio Buttons -->
+            <div class="p-4 rounded-xl bg-surface-container-low border border-surface-container space-y-2">
+              <label class="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-primary">tune</span>
+                <span>Recognition Mode:</span>
+              </label>
+              <div class="grid grid-cols-2 gap-3" id="recognitionModeRadios">
+                
+                <!-- Radio Option: Letters -->
+                <label class="relative flex items-center gap-3 p-3 rounded-xl border border-surface-container bg-white cursor-pointer hover:border-primary/40 transition-all shadow-xs has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:ring-1 has-[:checked]:ring-primary">
+                  <input type="radio" name="signRecognitionMode" value="letters" checked onchange="updateSignMode(this.value)" class="w-4 h-4 text-primary accent-primary cursor-pointer"/>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-bold text-primary flex items-center gap-1">
+                      <span>Letters</span>
+                      <span class="px-1.5 py-0.5 rounded text-[10px] bg-primary text-white font-semibold leading-none">Active</span>
+                    </span>
+                    <span class="text-[11px] text-on-surface-variant">Alphabet & Numbers</span>
+                  </div>
+                </label>
+
+                <!-- Radio Option: Words -->
+                <label class="relative flex items-center gap-3 p-3 rounded-xl border border-surface-container bg-white cursor-pointer hover:border-primary/40 transition-all shadow-xs has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:ring-1 has-[:checked]:ring-primary">
+                  <input type="radio" name="signRecognitionMode" value="words" onchange="updateSignMode(this.value)" class="w-4 h-4 text-primary accent-primary cursor-pointer"/>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-bold text-primary flex items-center gap-1">
+                      <span>Words</span>
+                      <span class="px-1.5 py-0.5 rounded text-[10px] bg-amber-100 text-amber-800 font-semibold leading-none">Vocab</span>
+                    </span>
+                    <span class="text-[11px] text-on-surface-variant">Phrases & signs</span>
+                  </div>
+                </label>
+
+              </div>
+            </div>
+
+            <!-- Group 2: Skeleton Diagram Modern Radio Buttons -->
+            <div class="p-4 rounded-xl bg-surface-container-low border border-surface-container space-y-2">
+              <label class="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-primary">polyline</span>
+                <span>Skeleton Diagram:</span>
+              </label>
+              <div class="grid grid-cols-2 gap-3" id="skeletonModeRadios">
+                
+                <!-- Radio Option: Skeleton ON -->
+                <label class="relative flex items-center gap-3 p-3 rounded-xl border border-surface-container bg-white cursor-pointer hover:border-primary/40 transition-all shadow-xs has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:ring-1 has-[:checked]:ring-primary">
+                  <input type="radio" name="skeletonDiagramMode" value="on" checked onchange="updateSkeletonMode(true)" class="w-4 h-4 text-primary accent-primary cursor-pointer"/>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-bold text-primary flex items-center gap-1">
+                      <span>Skeleton ON</span>
+                      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    </span>
+                    <span class="text-[11px] text-on-surface-variant">MediaPipe 21 Joints</span>
+                  </div>
+                </label>
+
+                <!-- Radio Option: Skeleton OFF -->
+                <label class="relative flex items-center gap-3 p-3 rounded-xl border border-surface-container bg-white cursor-pointer hover:border-primary/40 transition-all shadow-xs has-[:checked]:border-primary has-[:checked]:bg-primary/5 has-[:checked]:ring-1 has-[:checked]:ring-primary">
+                  <input type="radio" name="skeletonDiagramMode" value="off" onchange="updateSkeletonMode(false)" class="w-4 h-4 text-primary accent-primary cursor-pointer"/>
+                  <div class="flex flex-col">
+                    <span class="text-xs font-bold text-primary flex items-center gap-1">
+                      <span>Skeleton OFF</span>
+                      <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                    </span>
+                    <span class="text-[11px] text-on-surface-variant">Boundary Box & % Only</span>
+                  </div>
+                </label>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Camera (Left) + Recognition Output (Right) Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+
+        <!-- Single Live Camera Window Container -->
+        <div class="relative rounded-2xl overflow-hidden bg-slate-950 border-2 border-slate-800 shadow-2xl flex flex-col items-center justify-center min-h-[380px]">
+          
+          <!-- Hidden Video & Offscreen Processing Canvas -->
+          <video id="liveWebcamVideo" autoplay playsinline muted class="hidden"></video>
+          <canvas id="offscreenCanvas" class="hidden"></canvas>
+
+          <!-- Main Live Output Canvas (Renders Annotated Live Stream) -->
+          <canvas id="liveCameraCanvas" class="w-full max-h-[500px] object-contain block bg-slate-950"></canvas>
+
+          <!-- Camera Idle / Offline Placeholder Overlay -->
+          <div id="cameraIdleOverlay" class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 bg-slate-950/90 backdrop-blur-sm z-10 transition-opacity">
+            <div class="w-16 h-16 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-center text-teal-400 mb-4 shadow-inner">
+              <span class="material-symbols-outlined text-[36px]">videocam</span>
+            </div>
+            <h3 class="font-display font-extrabold text-xl text-white">Live Prediction Camera Ready</h3>
+            <p class="text-xs text-slate-400 max-w-sm mt-1 mb-6 leading-relaxed">
+              Enable your webcam to start real-time Indian Sign Language detection. Adjust your skeleton diagram preference and recognition mode above.
+            </p>
+            <button onclick="toggleLiveCamera()" class="py-3 px-8 bg-teal-600 hover:bg-teal-500 text-white font-bold text-sm rounded-xl shadow-lg shadow-teal-900/40 transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-[20px]">play_circle</span>
+              <span>Launch Live Camera</span>
+            </button>
+            <p class="text-[11px] text-slate-500 mt-4 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[14px]">info</span>
+              Only gestures with confidence ≥ 85% to 90% will be registered on the right.
+            </p>
+          </div>
+
+          <!-- Live Top HUD Overlay (Visible when streaming) -->
+          <div id="cameraLiveHUD" class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none hidden z-20">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-600/90 text-white flex items-center gap-1.5 backdrop-blur-md shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-white animate-ping"></span> LIVE
+              </span>
+              <span id="hudFpsBadge" class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-900/80 text-slate-300 border border-slate-700/60 backdrop-blur-md">
+                ⚡ ~12 FPS
+              </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="hudHandBadge" class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-900/80 text-amber-400 border border-slate-700/60 backdrop-blur-md flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">front_hand</span>
+                <span id="hudHandText">Searching for Hand...</span>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT SIDE: HIGH CONFIDENCE PREDICTION TEXT DISPLAY (≥ 85% to 90%) -->
+        <div class="rounded-2xl bg-white p-6 sm:p-8 shadow-sm border border-surface-container space-y-6">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-surface-container">
+            <div>
+              <span class="text-xs font-bold text-on-tertiary-container uppercase tracking-wider">AI Verified Output</span>
+              <h3 class="font-display font-extrabold text-xl text-primary mt-0.5">High-Confidence Recognition Output</h3>
+            </div>
+            
+            <!-- Confidence Threshold Control -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-semibold text-on-surface-variant">Threshold:</span>
+              <div class="flex rounded-lg bg-surface-container-low p-1 border border-surface-container text-xs font-bold">
+                <button type="button" id="thresh85Btn" onclick="setThreshold(85)" class="px-3 py-1 rounded-md bg-primary text-white shadow-xs transition-all">85%</button>
+                <button type="button" id="thresh90Btn" onclick="setThreshold(90)" class="px-3 py-1 rounded-md text-on-surface-variant hover:text-primary transition-all">90%</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Verified Sign Card -->
+          <div class="grid grid-cols-1 gap-6 items-center">
+            
+            <!-- Confident Sign Spotlight Box -->
+            <div class="p-5 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col items-center justify-center text-center min-h-[170px]">
+              <span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Detected Sign</span>
+              <div id="verifiedSignDisplay" class="font-display font-black text-6xl text-slate-300 tracking-tight transition-all scale-100">-</div>
+              <div id="verifiedConfidenceDisplay" class="mt-2 text-xs font-bold text-on-surface-variant flex items-center gap-1.5">
+                <span id="verifiedConfDot" class="w-2 h-2 rounded-full bg-slate-300"></span>
+                <span id="verifiedConfText">Waiting for sign (≥ 85%)...</span>
+              </div>
+            </div>
+
+            <!-- Accuracy Meter & Real-time Transcription Stream -->
+            <div class="space-y-4">
+              
+              <!-- Real-time Confidence Bar -->
+              <div>
+                <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+                  <span class="text-primary flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[16px] text-teal-600">verified</span>
+                    <span>Confidence Score</span>
+                  </span>
+                  <span id="liveConfidencePercentage" class="text-on-surface-variant font-mono">0.0%</span>
+                </div>
+                <div class="w-full h-3 rounded-full bg-surface-container-high overflow-hidden relative">
+                  <div id="liveConfidenceBar" class="h-full bg-slate-300 rounded-full transition-all duration-150" style="width: 0%;"></div>
+                  <!-- Marker for 85% -->
+                  <div class="absolute top-0 bottom-0 w-0.5 bg-primary/40" style="left: 85%;" title="85% High Confidence Threshold"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-on-surface-variant mt-1">
+                  <span>0%</span>
+                  <span class="font-bold text-primary">85% Threshold Line</span>
+                  <span>100%</span>
+                </div>
+              </div>
+
+              <!-- Accumulated Live Practice Text -->
+              <div class="p-3.5 rounded-xl bg-surface-container-lowest border border-surface-container">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Practice Transcription Stream:</span>
+                  <div class="flex items-center gap-1.5">
+                    <button onclick="addSpaceToStream()" class="px-2 py-0.5 rounded bg-surface-container hover:bg-surface-container-high text-[11px] font-bold text-primary transition-colors">Space</button>
+                    <button onclick="backspaceStream()" class="px-2 py-0.5 rounded bg-surface-container hover:bg-surface-container-high text-[11px] font-bold text-primary transition-colors">⌫</button>
+                    <button onclick="clearStream()" class="px-2 py-0.5 rounded bg-surface-container hover:bg-surface-container-high text-[11px] font-bold text-red-600 transition-colors">Clear</button>
+                  </div>
+                </div>
+                <div id="transcribedStreamText" class="font-mono text-base font-bold text-primary min-h-[36px] flex items-center tracking-wider bg-white p-2.5 rounded-lg border border-surface-container">
+                  <span class="text-slate-400 font-normal italic text-xs">Transcribed signs will accumulate here when held at ≥ 85%...</span>
+                </div>
+                <div class="flex gap-2 mt-2">
+                  <button onclick="copyTranscribedText()" class="text-[11px] font-bold text-primary hover:text-on-tertiary-container flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">content_copy</span>
+                    <span>Copy Text</span>
+                  </button>
+                  <button onclick="speakTranscribedText()" class="text-[11px] font-bold text-primary hover:text-on-tertiary-container flex items-center gap-1 ml-3">
+                    <span class="material-symbols-outlined text-[14px]">volume_up</span>
+                    <span>Speak Aloud (TTS)</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VIEW 4: ISL DICTIONARY -->
+    <section class="view-section hidden" id="view-dictionary">
+      <div class="rounded-2xl bg-white p-8 shadow-sm border border-surface-container space-y-6">
+        <div>
+          <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Verified Lexicon</span>
+          <h2 class="font-display font-extrabold text-2xl text-primary mt-1">Pan-Indian ISL Sign Dictionary</h2>
+          <p class="text-sm text-on-surface-variant mt-1">Explore and search verified ISL signs with gesture previews.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
+          <input id="dictSearchInput" type="text" placeholder="Search sign (e.g. A, B, 1, 2)..." oninput="loadDictionary()" class="w-full sm:w-96 h-11 px-4 bg-surface-container-low text-primary font-medium text-sm rounded-xl outline-none focus:ring-2 focus:ring-primary border border-surface-container"/>
+          <div class="flex gap-2">
+            <button onclick="filterDictCategory(this, 'all')" class="dict-cat-pill px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold">All</button>
+            <button onclick="filterDictCategory(this, 'alphabets')" class="dict-cat-pill px-4 py-2 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high text-xs font-semibold">Alphabets</button>
+            <button onclick="filterDictCategory(this, 'numbers')" class="dict-cat-pill px-4 py-2 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high text-xs font-semibold">Numbers</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4 pt-2" id="dictGrid"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: DAILY QUIZ -->
+    <section class="view-section hidden" id="view-daily-quiz">
+      <div class="max-w-2xl mx-auto rounded-2xl bg-white p-8 shadow-sm border border-surface-container space-y-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold text-secondary uppercase tracking-wider">Daily Challenge</span>
+            <h2 class="font-display font-extrabold text-2xl text-primary mt-1">ISL Gesture Quiz</h2>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold">+50 XP Reward</span>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-surface-container-low text-center space-y-4 border border-surface-container">
+          <p class="font-display font-bold text-lg text-primary" id="quizQuestion">Identify the Indian Sign Language gesture below:</p>
+          <div class="w-48 h-48 mx-auto rounded-xl overflow-hidden bg-white shadow-md p-2 border border-surface-container">
+            <img id="quizImg" class="w-full h-full object-contain" src="/signs/A.jpg"/>
+          </div>
+          <div class="grid grid-cols-2 gap-3 pt-2" id="quizOptionsGrid"></div>
+          <div id="quizFeedback" class="p-4 rounded-xl hidden font-bold text-sm"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-white border-t border-surface-container py-8">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant">
+      <div class="flex items-center gap-2">
+        <span class="font-display font-bold text-primary text-sm">Voice2Sign Platform</span>
+        <span>© 2025 Assistive AI Technologies. Radically accessible ISL learning.</span>
+      </div>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-primary transition-colors">Accessibility</a>
+        <a href="#" class="hover:text-primary transition-colors">ISL Guidelines</a>
+        <a href="#" class="hover:text-primary transition-colors">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- INTERACTIVE JS ENGINE -->
+  <script>
+    let activeDictCategory = 'all';
+    let currentQuizData = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load user session
+      const storedUser = localStorage.getItem('v2s_current_user') || localStorage.getItem('v2s_user');
+      if (storedUser) {
+        try {
+          const user = JSON.parse(storedUser);
+          const displayName = user.name || user.fullName || 'Aarav Sharma';
+          if (document.getElementById('userNameDisplay')) document.getElementById('userNameDisplay').innerText = displayName;
+          if (document.getElementById('userRoleDisplay')) document.getElementById('userRoleDisplay').innerText = user.role || 'Learner / Ally';
+          if (document.getElementById('greetingHeader')) document.getElementById('greetingHeader').innerText = `Welcome back, ${displayName}! 👋`;
+          if (document.getElementById('userStreak') && user.streak) document.getElementById('userStreak').innerText = `🔥 ${user.streak} Days`;
+          if (document.getElementById('userXP') && user.xp) document.getElementById('userXP').innerText = `⚡ ${user.xp} XP`;
+        } catch (e) { console.error(e); }
+      }
+
+      // Initial loads
+      convertTextToISL();
+      loadDictionary();
+      loadQuiz();
+    });
+
+    function switchView(viewId, btnEl) {
+      document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) target.classList.remove('hidden');
+
+      // If switching away from practice camera, stop live webcam
+      if (viewId !== 'practice-camera' && typeof isLiveStreaming !== 'undefined' && isLiveStreaming) {
+        stopLiveCamera();
+      }
+
+      // Update Nav active styling
+      document.querySelectorAll('#mainNav button').forEach(btn => {
+        btn.className = 'nav-tab-btn px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors rounded-lg';
+      });
+
+      if (btnEl) {
+        btnEl.className = 'nav-tab-btn px-4 py-2 text-sm font-semibold bg-primary-container text-white rounded-lg shadow-xs';
+      }
+    }
+
+    function handleSignOut() {
+      localStorage.removeItem('v2s_user');
+      localStorage.removeItem('v2s_current_user');
+      window.location.href = '/';
+    }
+
+    // --- TEXT TO ISL ---
+    async function convertTextToISL() {
+      const text = document.getElementById('textInput').value || 'HELLO';
+      try {
+        const res = await fetch('/api/text-to-isl', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text })
+        });
+        const data = await res.json();
+        const grid = document.getElementById('signCardsGrid');
+        grid.innerHTML = '';
+
+        if (data.signs && data.signs.length > 0) {
+          data.signs.forEach(item => {
+            if (item.found) {
+              grid.innerHTML += `
+                <div class="rounded-xl bg-surface-container-low p-3 text-center border border-surface-container shadow-xs hover:shadow-md transition-all">
+                  <img src="${item.url}" class="w-full h-24 object-contain rounded-lg bg-white p-1 mb-2"/>
+                  <span class="font-display font-bold text-xs text-primary block">Sign '${item.char}'</span>
+                </div>
+              `;
+            } else {
+              grid.innerHTML += `
+                <div class="rounded-xl bg-red-50 p-3 text-center border border-red-100">
+                  <span class="material-symbols-outlined text-red-500 text-[24px]">warning</span>
+                  <span class="text-xs text-red-700 block font-semibold">'${item.char}'</span>
+                </div>
+              `;
+            }
+          });
+        }
+      } catch (err) { console.error(err); }
+    }
+
+    // --- PRACTICE & AI CAMERA STUDIO LIVE ENGINE ---
+    let liveWebcamStream = null;
+    let liveSocket = null;
+    let isLiveStreaming = false;
+    let currentLayoutData = null;
+    const HAND_CONNECTIONS = [
+      [0, 1], [1, 2], [2, 3], [3, 4],
+      [0, 5], [5, 6], [6, 7], [7, 8],
+      [5, 9], [9, 10], [10, 11], [11, 12],
+      [9, 13], [13, 14], [14, 15], [15, 16],
+      [13, 17], [0, 17], [17, 18], [18, 19], [19, 20]
+    ];
+    let liveShowSkeleton = true;
+    let currentSignMode = 'letters';
+    let confidenceThreshold = 85.0;
+    let lastAppendedChar = null;
+    let lastAppendedTime = 0;
+    let accumulatedTranscription = "";
+    let isProcessingFrame = false;
+    let fpsCount = 0;
+    let fpsTimer = performance.now();
+    let lastFrameSentTime = 0;
+    const FRAME_INTERVAL = 110; // ~9 AI frames per second to avoid lag/stutter
+
+    function updateSignMode(mode) {
+      currentSignMode = mode;
+      console.log("Recognition mode updated:", mode);
+    }
+
+    function updateSkeletonMode(enabled) {
+      liveShowSkeleton = enabled;
+      console.log("Skeleton mode updated:", enabled);
+    }
+
+    function setThreshold(val) {
+      confidenceThreshold = parseFloat(val);
+      const b85 = document.getElementById('thresh85Btn');
+      const b90 = document.getElementById('thresh90Btn');
+      if (b85 && b90) {
+        if (confidenceThreshold === 85) {
+          b85.className = 'px-3 py-1 rounded-md bg-primary text-white shadow-xs transition-all';
+          b90.className = 'px-3 py-1 rounded-md text-on-surface-variant hover:text-primary transition-all';
+        } else {
+          b85.className = 'px-3 py-1 rounded-md text-on-surface-variant hover:text-primary transition-all';
+          b90.className = 'px-3 py-1 rounded-md bg-primary text-white shadow-xs transition-all';
+        }
+      }
+    }
+
+    async function toggleLiveCamera() {
+      if (isLiveStreaming) {
+        stopLiveCamera();
+      } else {
+        await startLiveCamera();
+      }
+    }
+
+    async function startLiveCamera() {
+      try {
+        const video = document.getElementById('liveWebcamVideo');
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          alert("Your browser does not support camera access.");
+          return;
+        }
+
+        liveWebcamStream = await navigator.mediaDevices.getUserMedia({
+          video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' }
+        });
+        video.srcObject = liveWebcamStream;
+        await video.play();
+
+        isLiveStreaming = true;
+        document.getElementById('cameraIdleOverlay').classList.add('hidden');
+        document.getElementById('cameraLiveHUD').classList.remove('hidden');
+
+        document.getElementById('toggleCamText').innerText = "Stop Camera";
+        document.getElementById('toggleCamIcon').innerText = "videocam_off";
+        document.getElementById('toggleLiveCamBtn').className = "h-12 px-6 bg-red-600 hover:bg-red-700 text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2";
+
+        const statusPill = document.getElementById('cameraStatusPill');
+        statusPill.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 flex items-center gap-1.5 border border-emerald-200";
+        statusPill.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Live Streaming';
+
+        const wsProtocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+        liveSocket = new WebSocket(`${wsProtocol}//${window.location.host}/ws/live-predict`);
+        
+        liveSocket.onopen = () => {
+            console.log("WebSocket connected");
+            fpsCount = 0;
+            fpsTimer = performance.now();
+            runLiveLoop();
+        };
+
+        liveSocket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            if (data.status === 'success' && isLiveStreaming) {
+                currentLayoutData = data.layout_data;
+                isProcessingFrame = false;
+
+                // Update HUD Hand detection indicator
+                const hudHandText = document.getElementById('hudHandText');
+                const hudHandBadge = document.getElementById('hudHandBadge');
+                if (hudHandText && hudHandBadge) {
+                  if (data.hand_detected) {
+                    hudHandText.innerText = "Hand Detected";
+                    hudHandBadge.className = "px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-900/80 text-emerald-300 border border-emerald-700/60 backdrop-blur-md flex items-center gap-1";
+                  } else {
+                    hudHandText.innerText = "Searching for Hand...";
+                    hudHandBadge.className = "px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-900/80 text-amber-400 border border-slate-700/60 backdrop-blur-md flex items-center gap-1";
+                  }
+                }
+
+                // FPS calculation
+                fpsCount++;
+                const now = performance.now();
+                if (now - fpsTimer >= 1000) {
+                  const fps = Math.round((fpsCount * 1000) / (now - fpsTimer));
+                  const fpsBadge = document.getElementById('hudFpsBadge');
+                  if (fpsBadge) fpsBadge.innerText = `⚡ ~${fps} FPS`;
+                  fpsCount = 0;
+                  fpsTimer = now;
+                }
+
+                // Update Right-Panel Text Display
+                updatePredictionDisplay(data);
+            }
+        };
+
+        liveSocket.onclose = () => {
+            console.log("WebSocket disconnected");
+        };
+
+      } catch (err) {
+        console.error("Camera access error:", err);
+        alert("Could not access camera: " + (err.message || err.name));
+      }
+    }
+
+    function stopLiveCamera() {
+      isLiveStreaming = false;
+      if (liveWebcamStream) {
+        liveWebcamStream.getTracks().forEach(track => track.stop());
+        liveWebcamStream = null;
+      }
+      if (liveSocket) {
+        liveSocket.close();
+        liveSocket = null;
+      }
+      isProcessingFrame = false;
+      currentLayoutData = null;
+
+      const idleOverlay = document.getElementById('cameraIdleOverlay');
+      if (idleOverlay) idleOverlay.classList.remove('hidden');
+      const liveHud = document.getElementById('cameraLiveHUD');
+      if (liveHud) liveHud.classList.add('hidden');
+
+      const toggleText = document.getElementById('toggleCamText');
+      if (toggleText) toggleText.innerText = "Start Live Prediction";
+      const toggleIcon = document.getElementById('toggleCamIcon');
+      if (toggleIcon) toggleIcon.innerText = "videocam";
+      const toggleBtn = document.getElementById('toggleLiveCamBtn');
+      if (toggleBtn) toggleBtn.className = "h-12 px-6 bg-primary hover:bg-primary-container text-white font-bold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2";
+
+      const statusPill = document.getElementById('cameraStatusPill');
+      if (statusPill) {
+        statusPill.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-600 flex items-center gap-1.5 border border-slate-200";
+        statusPill.innerHTML = '<span class="w-2 h-2 rounded-full bg-slate-400"></span> Camera Offline';
+      }
+
+      // Reset output display
+      const signDisplay = document.getElementById('verifiedSignDisplay');
+      if (signDisplay) {
+        signDisplay.innerText = "-";
+        signDisplay.className = "font-display font-black text-6xl text-slate-300 tracking-tight transition-all scale-100";
+      }
+      const confText = document.getElementById('verifiedConfText');
+      if (confText) confText.innerText = "Waiting for sign (≥ 85%)...";
+      const confDot = document.getElementById('verifiedConfDot');
+      if (confDot) confDot.className = "w-2 h-2 rounded-full bg-slate-300";
+      const confPercent = document.getElementById('liveConfidencePercentage');
+      if (confPercent) confPercent.innerText = "0.0%";
+      const confBar = document.getElementById('liveConfidenceBar');
+      if (confBar) confBar.style.width = "0%";
+    }
+
+    async function runLiveLoop() {
+      if (!isLiveStreaming) return;
+
+      const video = document.getElementById('liveWebcamVideo');
+      const canvas = document.getElementById('liveCameraCanvas');
+      const offscreen = document.getElementById('offscreenCanvas');
+
+      if (video && video.readyState >= 2) {
+        const ctx = canvas.getContext('2d');
+
+        // Always render the raw webcam feed locally so the preview stays smooth
+        canvas.width = 480;
+        canvas.height = 360;
+        ctx.save();
+        ctx.scale(-1, 1); // mirror selfie preview
+        ctx.drawImage(video, 0, 0, -canvas.width, canvas.height);
+        ctx.restore();
+
+        // Overlay landmarks and boxes received from AI
+        if (currentLayoutData) {
+            const scaleX = canvas.width / 320;
+            const scaleY = canvas.height / 240;
+
+            if (currentLayoutData.landmarks && liveShowSkeleton) {
+                ctx.lineWidth = 2;
+                currentLayoutData.landmarks.forEach(lms => {
+                    ctx.strokeStyle = '#00FF00';
+                    HAND_CONNECTIONS.forEach(([i, j]) => {
+                        if (lms[i] && lms[j]) {
+                            ctx.beginPath();
+                            ctx.moveTo(lms[i].x * scaleX, lms[i].y * scaleY);
+                            ctx.lineTo(lms[j].x * scaleX, lms[j].y * scaleY);
+                            ctx.stroke();
+                        }
+                    });
+                    ctx.fillStyle = '#FF0000';
+                    lms.forEach(lm => {
+                        ctx.beginPath();
+                        ctx.arc(lm.x * scaleX, lm.y * scaleY, 4, 0, 2 * Math.PI);
+                        ctx.fill();
+                    });
+                });
+            }
+
+            if (currentLayoutData.boxes) {
+                currentLayoutData.boxes.forEach(box => {
+                    const x1 = box.x1 * scaleX;
+                    const y1 = box.y1 * scaleY;
+                    const w = (box.x2 - box.x1) * scaleX;
+                    const h = (box.y2 - box.y1) * scaleY;
+
+                    ctx.strokeStyle = '#00FF00';
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(x1, y1, w, h);
+
+                    if (box.label) {
+                        const text = `${box.label} (${box.confidence.toFixed(1)}%)`;
+                        ctx.font = "bold 16px Arial";
+                        const tw = ctx.measureText(text).width;
+                        
+                        ctx.fillStyle = box.color ? `rgb(${box.color[2]},${box.color[1]},${box.color[0]})` : '#00A5FF';
+                        ctx.fillRect(x1, y1 - 25, tw + 8, 25);
+
+                        ctx.fillStyle = "#FFFFFF";
+                        ctx.fillText(text, x1 + 4, y1 - 7);
+                    }
+                });
+            }
+        }
+
+        if (liveSocket && liveSocket.readyState === WebSocket.OPEN && !isProcessingFrame) {
+          isProcessingFrame = true;
+
+          offscreen.width = 320;
+          offscreen.height = 240;
+          const offCtx = offscreen.getContext('2d');
+          offCtx.save();
+          offCtx.scale(-1, 1); // mirror to match the on-screen preview
+          offCtx.drawImage(video, 0, 0, -offscreen.width, offscreen.height);
+          offCtx.restore();
+          const frameData = offscreen.toDataURL('image/jpeg', 0.6);
+
+          liveSocket.send(JSON.stringify({
+            image: frameData,
+            show_skeleton: liveShowSkeleton,
+            mode: currentSignMode,
+            threshold: confidenceThreshold
+          }));
+        }
+      }
+
+      if (isLiveStreaming) {
+        requestAnimationFrame(runLiveLoop);
+      }
+    }
+
+    function updatePredictionDisplay(data) {
+      const signDisplay = document.getElementById('verifiedSignDisplay');
+      const confText = document.getElementById('verifiedConfText');
+      const confDot = document.getElementById('verifiedConfDot');
+      const confPercent = document.getElementById('liveConfidencePercentage');
+      const confBar = document.getElementById('liveConfidenceBar');
+
+      const conf = typeof data.confidence === 'number' ? data.confidence : 0;
+      if (confPercent) confPercent.innerText = `${conf.toFixed(1)}%`;
+      if (confBar) confBar.style.width = `${Math.min(100, conf)}%`;
+
+      // Text appears if prediction percentage is greater than 85 to 90
+      if (data.hand_detected && conf >= confidenceThreshold && data.predicted_class) {
+        if (signDisplay) {
+          signDisplay.innerText = data.predicted_class;
+          signDisplay.className = "font-display font-black text-6xl text-emerald-600 tracking-tight transition-all scale-105";
+        }
+        if (confText) {
+          confText.innerText = `${conf.toFixed(1)}% Verified Sign ✓`;
+          confText.className = "mt-2 text-xs font-bold text-emerald-700 flex items-center gap-1.5";
+        }
+        if (confDot) confDot.className = "w-2 h-2 rounded-full bg-emerald-500 animate-pulse";
+        if (confBar) confBar.className = "h-full bg-emerald-500 rounded-full transition-all duration-150";
+
+        // Accumulate character into stream if held stably
+        const now = Date.now();
+        if (data.predicted_class !== lastAppendedChar || (now - lastAppendedTime > 1200)) {
+          appendCharToStream(data.predicted_class);
+          lastAppendedChar = data.predicted_class;
+          lastAppendedTime = now;
+        }
+      } else if (data.hand_detected) {
+        // Hand detected, but confidence is below the threshold
+        if (signDisplay) {
+          signDisplay.innerText = "-";
+          signDisplay.className = "font-display font-black text-6xl text-slate-300 tracking-tight";
+        }
+        if (confText) {
+          confText.innerText = `Analyzing... Hold steady (${conf.toFixed(1)}% < ${confidenceThreshold}%)`;
+          confText.className = "mt-2 text-xs font-bold text-amber-600 flex items-center gap-1.5";
+        }
+        if (confDot) confDot.className = "w-2 h-2 rounded-full bg-amber-400";
+        if (confBar) confBar.className = "h-full bg-amber-400 rounded-full transition-all duration-150";
+      } else {
+        // No hand detected
+        if (signDisplay) {
+          signDisplay.innerText = "-";
+          signDisplay.className = "font-display font-black text-6xl text-slate-300 tracking-tight";
+        }
+        if (confText) {
+          confText.innerText = "Position hand in front of camera";
+          confText.className = "mt-2 text-xs font-bold text-on-surface-variant flex items-center gap-1.5";
+        }
+        if (confDot) confDot.className = "w-2 h-2 rounded-full bg-slate-300";
+        if (confBar) confBar.className = "h-full bg-slate-300 rounded-full transition-all duration-150";
+      }
+    }
+
+    function appendCharToStream(char) {
+      accumulatedTranscription += char;
+      renderTranscriptionStream();
+    }
+
+    function addSpaceToStream() {
+      accumulatedTranscription += " ";
+      renderTranscriptionStream();
+    }
+
+    function backspaceStream() {
+      accumulatedTranscription = accumulatedTranscription.slice(0, -1);
+      renderTranscriptionStream();
+    }
+
+    function clearStream() {
+      accumulatedTranscription = "";
+      renderTranscriptionStream();
+    }
+
+    function renderTranscriptionStream() {
+      const el = document.getElementById('transcribedStreamText');
+      if (el) {
+        if (accumulatedTranscription) {
+          el.innerHTML = `<span class="text-primary text-lg font-bold">${accumulatedTranscription}</span>`;
+        } else {
+          el.innerHTML = '<span class="text-slate-400 font-normal italic text-xs">Transcribed signs will accumulate here when held at ≥ 85%...</span>';
+        }
+      }
+    }
+
+    function copyTranscribedText() {
+      if (!accumulatedTranscription) return;
+      navigator.clipboard.writeText(accumulatedTranscription);
+      alert("Transcribed text copied to clipboard!");
+    }
+
+    function speakTranscribedText() {
+      if (!accumulatedTranscription || !('speechSynthesis' in window)) return;
+      const utterance = new SpeechSynthesisUtterance(accumulatedTranscription);
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // --- ISL DICTIONARY ---
+    function filterDictCategory(btn, cat) {
+      document.querySelectorAll('.dict-cat-pill').forEach(b => {
+        b.className = 'dict-cat-pill px-4 py-2 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high text-xs font-semibold';
+      });
+      btn.className = 'dict-cat-pill px-4 py-2 rounded-xl bg-primary text-white text-xs font-bold';
+      activeDictCategory = cat;
+      loadDictionary();
+    }
+
+    async function loadDictionary() {
+      const q = document.getElementById('dictSearchInput').value;
+      try {
+        const res = await fetch(`/api/dictionary?q=${encodeURIComponent(q)}&category=${activeDictCategory}`);
+        const data = await res.json();
+        const grid = document.getElementById('dictGrid');
+        grid.innerHTML = '';
+        if (data.signs && data.signs.length > 0) {
+          data.signs.forEach(s => {
+            grid.innerHTML += `
+              <div class="rounded-xl bg-surface-container-low p-3 text-center border border-surface-container shadow-xs hover:shadow-md transition-all">
+                <img src="${s.url}" class="w-full h-24 object-contain rounded-lg bg-white p-1 mb-2"/>
+                <span class="font-display font-bold text-xs text-primary block">Sign '${s.symbol}'</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">${s.category}</span>
+              </div>
+            `;
+          });
+        } else {
+          grid.innerHTML = `<div class="col-span-full text-center text-on-surface-variant text-sm py-4">No matching signs found.</div>`;
+        }
+      } catch (err) { console.error(err); }
+    }
+
+    // --- DAILY QUIZ ---
+    async function loadQuiz() {
+      try {
+        const res = await fetch('/api/quiz');
+        currentQuizData = await res.json();
+        document.getElementById('quizImg').src = currentQuizData.image_url;
+        const optsGrid = document.getElementById('quizOptionsGrid');
+        optsGrid.innerHTML = '';
+
+        currentQuizData.options.forEach(opt => {
+          optsGrid.innerHTML += `
+            <button onclick="submitQuizOption('${opt}')" class="py-3 px-4 rounded-xl bg-white hover:bg-primary hover:text-white font-display font-bold text-sm text-primary border border-surface-container transition-colors shadow-xs">
+              ${opt}
+            </button>
+          `;
+        });
+      } catch (err) { console.error(err); }
+    }
+
+    async function submitQuizOption(selectedOpt) {
+      if (!currentQuizData) return;
+      try {
+        const res = await fetch('/api/quiz/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            selected_option: selectedOpt,
+            correct_option: currentQuizData.correct_option
+          })
+        });
+        const data = await res.json();
+        const feedback = document.getElementById('quizFeedback');
+        feedback.classList.remove('hidden');
+        feedback.innerText = data.message;
+
+        if (data.correct) {
+          feedback.className = 'p-4 rounded-xl font-bold text-sm bg-teal-50 text-teal-800 border border-teal-200 block';
+          let storedUser = localStorage.getItem('v2s_user');
+          if (storedUser) {
+            let u = JSON.parse(storedUser);
+            u.xp = (u.xp || 450) + 50;
+            localStorage.setItem('v2s_user', JSON.stringify(u));
+            document.getElementById('userXP').innerText = `⚡ ${u.xp} XP`;
+          }
+        } else {
+          feedback.className = 'p-4 rounded-xl font-bold text-sm bg-red-50 text-red-800 border border-red-200 block';
+        }
+      } catch (err) { console.error(err); }
+    }
+  </script>
+</body>
+</html>
